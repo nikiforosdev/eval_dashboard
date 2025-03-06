@@ -1,0 +1,260 @@
+body {
+    font-family: roboto;
+    font-weight: lighter;
+    color: #EAEAEA;
+    background-color: #272c32;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 800px;
+}
+
+.second-phase-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 800px;
+    height: auto;
+}
+  
+.overall-sent-container-flex {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    width: auto;
+    justify-content: space-around;
+    background-color: #EAEAEA;
+    padding: 25px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #182B2C, #272c32, #414e4e, #1D7173, #4A4A4A);
+}
+
+.overall-sent-item-flex{
+    
+}
+
+
+.imgs{
+    width: 200px;
+    height: auto;
+    max-width: 300px;
+    margin: auto;
+}
+
+.imgs img{
+    width: 100%;
+    height: auto;
+    margin: auto;
+
+}
+
+
+
+.progress-container {
+    width: 15px;
+    height: 130px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+.progress-bar {
+    width: 100%;
+    height: 0%; /* Start empty */
+    background-color: #4caf50;
+    position: absolute;
+    bottom: 0; /* Align to bottom */
+    transition: height 0.3s ease-in-out;
+}
+
+/*
+.progress-bar.hidden{
+    display: none;
+}
+*/
+
+.img-progress-flex {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: auto;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.flex-item {
+    background: #EAEAEA;
+    border-radius: 20px;
+    width: 385px;
+    height: 300px;
+    background-color: #182B2C;
+}
+
+
+.flex-item p {
+    font-size: 16px;
+    width: 80%;
+    margin: auto;
+    height: auto;
+}
+
+
+#sent-emoji{
+    font-size: 72px;
+    text-shadow: 0px 0px 7px #000;
+}
+
+#overall-sent-title {
+    font-size: 24px;
+    padding-bottom: 10px;
+}
+
+#overall-sent-content{
+    font-size: 18px;
+}
+
+
+
+#keyword-bad{
+    color: #FF8B81;
+    display: inline;
+}
+
+#keyword-good{
+    color: #93FF7C;
+    display: inline;
+}
+
+.text-cont {
+    max-width: 90%;
+    margin: auto;
+}
+
+
+#progress-bar-good{
+    background-color: #4caf50;
+    height: 75%;
+}
+
+#progress-bar-bad{
+    background-color: #FF8B81;
+    height: 40%;
+}
+
+.animated-gradient {
+    background: linear-gradient(45deg, #182B2C, #272c32, #414e4e, #1D7173, #4A4A4A);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease-in-out infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#toggle-show {
+    padding-top: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.container {
+    width: 200px;
+    height: 100px;
+    background-color: #4A90E2;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.flex-item.expanded {
+    width: 600px;
+    height: 500px;
+}
+
+.container {
+    width: 200px;
+    height: 100px;
+    background-color: #4A90E2;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.flex-item.minimized {
+    width: 175px;
+    height: 160px;
+}
+
+/*
+#generation-cont{
+    background: linear-gradient(45deg, #4A4A4A, #1D7173, #414e4e, #272c32, #182B2D);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease-in-out infinite;
+}
+
+#retrieval-cont{
+    background: linear-gradient(45deg, #182B2C, #272c32, #414e4e, #1D7173, #4A4A4A);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease-in-out infinite;
+}*/
+
+
+#gen_summary.hidden{
+    display: none;
+}
+
+#ret_summary.hidden{
+    display: none;
+}
+
+
+.expanded .img-progress-flex .results-txt{
+    width: 90%;
+}
+
+.expanded .img-progress-flex{
+    width: 90%;
+}
+
+.expanded.animated-gradient{
+    background: #1b222b;
+}
+
+.summary-title {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.summary-intro {
+    font-size: 14px;
+}

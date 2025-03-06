@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Node.js Server</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+    <div class="main-container">
+        <div class="overall-sent-container-flex">
+            <div class="overall-sent-item-flex">
+                <div id="overall-sent-title">
+                    Overall Sentiment
+                </div>
+                <div id="overall-sent-content">
+                </div>
+                <div id="toggle-show"> Read More</div>
+            </div>
+            <div class="overall-sent-item-flex" id="sent-emoji">
+                😐
+            </div>
+
+        </div>
+
+
+        <div class="second-phase-container hidden" id="hidden-container">
+
+                <div class="flex-item animated-gradient" id="generation-cont">
+                    <div class="img-progress-flex">
+                        <div id="img-holder" class="imgs">
+
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progress-bar-good"></div>
+                        </div>
+
+                        <div class="results-txt hidden" id="gen_summary">
+                            <div class="summary-title">Generation Scores Summary</div>
+                            <div class="summary-intro"> 
+                                <div class="summary-intro"> 
+                                    After retrieving information, the system generates a response, evaluated using: 
+                                    ROUGE Score, which checks overlap with ideal answers to ensure key details, 
+                                    and BLEU Score, which measures fluency and accuracy by comparing with high-quality references.
+                                    <br></br>These scores help determine whether the response is well-formed, relevant, and clearly written.  
+                                </div>  
+                                
+                            </div>  
+
+                        </div>
+
+                    </div>
+                    
+                    <div class="text-cont">This response scores <div id="keyword-good">adequately</div> for generation. Caution still advised.</div>
+                </div>
+
+
+                <div class="flex-item animated-gradient" id="retrieval-cont">
+                    <div class="img-progress-flex">
+                        <div id="img-holder2" class="imgs">
+
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progress-bar-bad"></div>
+                        </div>
+
+                        <div class="results-txt hidden" id="ret_summary">
+                            <div class="summary-title">Retrieval Scores Summary</div>  
+                            <div class="summary-intro">  
+                                The system retrieves relevant sections from the manual to generate responses.  
+                                We evaluate its performance based on three key factors: how much relevant information it includes (context recall),  
+                                how accurately it selects details (context precision), and how well the response stays on topic (response relevance).  
+                                <br></br>  
+                                These scores help assess whether the retrieved information is useful and reliable.  
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="text-cont">This response scores <div id="keyword-bad">poorly</div> for retrieval. Contents might not be accurate.</div>
+                </div>
+            </div>
+        </div>
+<script src="script.js"></script>
+</body>
+</html>
