@@ -9,8 +9,6 @@ var img2 = document.createElement("img");
 img2.src = "retrieve_icon.png";
 var src2 = document.getElementById("img-holder2");
 src2.appendChild(img2);
-
-
 let progress = 0; // Initial progress (0 to 100)
 
 function increaseProgress() {
@@ -28,7 +26,6 @@ function decreaseProgress() {
 }
 
 general_score = 0.6
-
 var src2 = document.getElementById("overall-sent-content");
 var genscore = document.createElement("div");
 if(general_score>=0.8){
@@ -36,7 +33,8 @@ if(general_score>=0.8){
     src2.appendChild(genscore);
 
 }else if(general_score>=0.5){
-    genscore.textContent = "This response scores adequately for generation but may lack fluency or diversity. It scores poorly for retrieval, so contents might not be accurate.";
+    //genscore.textContent = "This response scores adequately for generation but may lack fluency or diversity. It scores poorly for retrieval, so contents might not be accurate.";
+    genscore.textContent = "This response scores adequately for retrieval, meaning it finds relevant content. However, it may lack accuracy in its generation, and the response might not be very creative or natural."
     src2.appendChild(genscore);
 }else{
     genscore.textContent = "";
@@ -73,6 +71,12 @@ document.getElementById("toggle-show").addEventListener("click", function() {
 
                 var element = document.getElementById("ret_summary");
                 element.classList.add("hidden");
+
+                var element = document.getElementById("gen_metric_cont");
+                element.classList.remove("hidden");
+
+                var element = document.getElementById("ret_metric_cont");
+                element.classList.add("hidden");
                 
             });
 
@@ -94,6 +98,12 @@ document.getElementById("toggle-show").addEventListener("click", function() {
                 element.classList.add("hidden");
 
                 var element = document.getElementById("ret_summary");
+                element.classList.remove("hidden");
+
+                var element = document.getElementById("gen_metric_cont");
+                element.classList.add("hidden");
+
+                var element = document.getElementById("ret_metric_cont");
                 element.classList.remove("hidden");
                 
             });
@@ -117,6 +127,12 @@ document.getElementById("toggle-show").addEventListener("click", function() {
 
                 var element = document.getElementById("ret_summary");
                 element.classList.add("hidden");
+
+                var element = document.getElementById("gen_metric_cont");
+                element.classList.add("hidden");
+
+                var element = document.getElementById("ret_metric_cont");
+                element.classList.add("hidden");
                 
             });
 
@@ -139,6 +155,12 @@ document.getElementById("toggle-show").addEventListener("click", function() {
 
                 var element = document.getElementById("ret_summary");
                 element.classList.add("hidden");
+
+                var element = document.getElementById("gen_metric_cont");
+                element.classList.add("hidden");
+
+                var element = document.getElementById("ret_metric_cont");
+                element.classList.add("hidden");
             });
         } else {
             console.error("gen_container not found.");
@@ -146,4 +168,106 @@ document.getElementById("toggle-show").addEventListener("click", function() {
     }
 });
 
+
+function updateProgressBar(id, value) {
+    const bar = document.getElementById(id);
+    const valueDisplay = document.getElementById(`metricValue-${id.split('-')[1]}`);
+
+    value = Math.max(0, Math.min(1, value)); // Ensure value is between 0 and 1
+    bar.style.width = (value * 100) + "%";
+    valueDisplay.textContent = value.toFixed(2);
+
+    // Dynamic Color Mapping (Red → Orange → Yellow → Green)
+    let color;
+    if (value < 0.3) {
+        color = `rgb(${255}, ${value * 255 / 0.3}, 0)`;  // Red to Orange
+    } else if (value < 0.6) {
+        color = `rgb(${(1 - (value - 0.3) / 0.3) * 255}, 255, 0)`; // Orange to Yellow
+    } else {
+        color = `rgb(0, 255, ${(value - 0.6) / 0.4 * 255})`;  // Yellow to Green
+    }
+
+    bar.style.background = color;
+}
+
+// Initialize with example values
+updateProgressBar("progress-rouge", 0.32);
+
+updateProgressBar("progress-bleu", 0.20);
+
+updateProgressBar("progress-precision", 0.71);
+
+updateProgressBar("progress-recall", 0.10);
+
+updateProgressBar("progress-relevancy", 0.64);
+
+
+const progressBars = document.querySelectorAll(".progress-bar-metric");
+
+// Create floating explanation container
+const floatingContainer = document.createElement("div");
+floatingContainer.classList.add("floating-container");
+document.body.appendChild(floatingContainer);
+
+function showFloatingBox(event, explanation) {
+    floatingContainer.textContent = explanation;
+    floatingContainer.style.display = "block";
+    floatingContainer.style.left = `${event.pageX + 15}px`;
+    floatingContainer.style.top = `${event.pageY + 15}px`;
+}
+
+function hideFloatingBox() {
+    floatingContainer.style.display = "none";
+}
+
+progressBars.forEach((bar) => {
+    const explanation = bar.dataset.explanation; // Get custom explanation from HTML
+
+    bar.addEventListener("mouseenter", (event) => showFloatingBox(event, explanation));
+    bar.addEventListener("mousemove", (event) => {
+        floatingContainer.style.left = `${event.pageX + 15}px`;
+        floatingContainer.style.top = `${event.pageY + 15}px`;
+    });
+    bar.addEventListener("mouseleave", hideFloatingBox);
 });
+
+
+
+// Get all the rating option elements
+// Get all the rating option containers (e.g., feedback sections)
+const ratingContainers = document.querySelectorAll('.feedback-container');
+
+ratingContainers.forEach(container => {
+    const ratingOptions = container.querySelectorAll('.rating-option');
+    const feedbackText = container.querySelector('#feedback-text');
+    const thankYouMessage = container.querySelector('.thank-you-message');
+
+    // Handle when a user clicks on a rating option
+    ratingOptions.forEach(option => {
+        option.addEventListener('click', function () {
+            const ratingValue = this.getAttribute('data-value');
+            
+            // Hide the feedback text and show the "thank you" message
+            feedbackText.style.display = 'none';
+            thankYouMessage.style.display = 'block';
+
+            // You can process the rating value here if needed
+            console.log(`User rated: ${ratingValue}`);
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
