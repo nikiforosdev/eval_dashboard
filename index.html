@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Local Node.js Server</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
+  
 </head>
 <body>
     <div class="main-container">
@@ -36,7 +33,7 @@
 
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" id="progress-bar-good"></div>
+                            <div class="progress-bar" id="progress-bar-bad"></div>
                         </div>
 
                         <div class="results-txt hidden" id="gen_summary">
@@ -54,8 +51,54 @@
                         </div>
 
                     </div>
+                    <div class="metric-container hidden" id="gen_metric_cont">
+                        <div class="metric-container-metrics">
+                            <div>
+                                <div class="metric-label">Rouge Score</div>
+                                <div class="progress-bar-metric" data-explanation="Low ROUGE Score indicates that main points are missing or response wasn't detailed enough.">
+                                    <div class="progress-fill-metric" id="progress-rouge"></div>
+                                </div>
+                                <div class="metric-value" id="metricValue-rouge">0.72</div>
+                            </div>
+
+                            <div>
+                                <div class="metric-label">Bleu Score</div>
+                                <div class="progress-bar-metric" data-explanation="Low BLEU Score indicates that response might be hard to understand or didn't quite capture the meaning correctly.">
+                                    <div class="progress-fill-metric" id="progress-bleu"></div>
+                                </div>
+                                <div class="metric-value" id="metricValue-bleu">0.50</div>
+                            </div>
+                        </div>
+                        <div class="feedback-container" id="feedback-cont-add-padding">
+                            <div id="feedback-text">
+                                <div id="feedback-text-title">
+                                    Your opinion is important..
+                                </div>
+                                <div id="feedback-text-question">
+                                    How well-formed, relevant and clearly written was the response in your opinion?
+                                </div>
+                                <div class="rating-options">
+                                    <span class="rating-option" data-value="1">1</span>
+                                    <span class="rating-option" data-value="2">2</span>
+                                    <span class="rating-option" data-value="3">3</span>
+                                    <span class="rating-option" data-value="4">4</span>
+                                    <span class="rating-option" data-value="5">5</span>
+                                    <span class="rating-option" data-value="6">6</span>
+                                    <span class="rating-option" data-value="7">7</span>
+                                    <span class="rating-option" data-value="8">8</span>
+                                    <span class="rating-option" data-value="9">9</span>
+                                    <span class="rating-option" data-value="10">10</span>
+                                </div>
+                            </div>
+                            <div class="thank-you-message" id="thank-you-message-gen" style="display: none;">
+                                Thank you for your feedback
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
                     
-                    <div class="text-cont">This response scores <div id="keyword-good">adequately</div> for generation. Caution still advised.</div>
+                    <div class="text-cont">This response scores <div id="keyword-bad">poorly</div> for generation. Response may not be accurate or relevant.</div>
                 </div>
 
 
@@ -65,7 +108,7 @@
 
                         </div>
                         <div class="progress-container">
-                            <div class="progress-bar" id="progress-bar-bad"></div>
+                            <div class="progress-bar" id="progress-bar-good"></div>
                         </div>
 
                         <div class="results-txt hidden" id="ret_summary">
@@ -82,7 +125,64 @@
                         </div>
 
                     </div>
-                    <div class="text-cont">This response scores <div id="keyword-bad">poorly</div> for retrieval. Contents might not be accurate.</div>
+
+                    <div class="metric-container hidden" id="ret_metric_cont">
+                        <div class="metric-container-metrics">
+                            <div>
+                                <div class="metric-label">Precision</div>
+                                <div class="progress-bar-metric" data-explanation="High precision means response does a great job of using the right information and doesn't include irrelevant information.">
+                                    <div class="progress-fill-metric" id="progress-precision"></div>
+                                </div>
+                                <div class="metric-value" id="metricValue-precision">0.72</div>
+                            </div>
+    
+                            <div>
+                                <div class="metric-label">Recall</div>
+                                <div class="progress-bar-metric" data-explanation="Low Recall score means there might be parts that were left out or not emphasized enough in the response.">
+                                    <div class="progress-fill-metric" id="progress-recall"></div>
+                                </div>
+                                <div class="metric-value" id="metricValue-recall">0.50</div>
+                            </div>
+    
+                            <div>
+                                <div class="metric-label">Relevancy</div>
+                                <div class="progress-bar-metric" data-explanation="High Relevancy score means the response is highly relevant and closely matches what the user asked for.">
+                                    <div class="progress-fill-metric" id="progress-relevancy"></div>
+                                </div>
+                                <div class="metric-value" id="metricValue-relevancy">0.50</div>
+                            </div>
+                        </div>
+
+                        <div class="feedback-container">
+                            <div id="feedback-text">
+                                <div id="feedback-text-title">
+                                    Your opinion is important..
+                                </div>
+                                <div id="feedback-text-question">
+                                    How complete, relevant and accurate was the retrieved information in your opinion?
+                                </div>
+                                <div class="rating-options">
+                                    <span class="rating-option" data-value="1">1</span>
+                                    <span class="rating-option" data-value="2">2</span>
+                                    <span class="rating-option" data-value="3">3</span>
+                                    <span class="rating-option" data-value="4">4</span>
+                                    <span class="rating-option" data-value="5">5</span>
+                                    <span class="rating-option" data-value="6">6</span>
+                                    <span class="rating-option" data-value="7">7</span>
+                                    <span class="rating-option" data-value="8">8</span>
+                                    <span class="rating-option" data-value="9">9</span>
+                                    <span class="rating-option" data-value="10">10</span>
+                                </div>
+                            </div>
+                            <div class="thank-you-message" id="thank-you-message-ret" style="display: none;">
+                                Thank you for your feedback
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+                    <div class="text-cont">This response scores <div id="keyword-good">adequately</div> for retrieval. Caution still advised.</div>
                 </div>
             </div>
         </div>
