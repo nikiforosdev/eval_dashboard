@@ -1,12 +1,3 @@
-.roboto-<uniquifier> {
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
-
 body {
     font-family: roboto;
     font-weight: lighter;
@@ -19,15 +10,15 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
     margin: auto;
-    width: 800px;
+    width: 700px;
 }
 
-.second-phase-container {
+.second-phase-container {   
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 800px;
+    width: 700px;
     height: auto;
 }
   
@@ -106,7 +97,7 @@ body {
 .flex-item {
     background: #EAEAEA;
     border-radius: 20px;
-    width: 385px;
+    width: 340px;
     height: 300px;
     background-color: #182B2C;
 }
@@ -123,15 +114,17 @@ body {
 #sent-emoji{
     font-size: 72px;
     text-shadow: 0px 0px 7px #000;
+    margin: auto;
 }
 
 #overall-sent-title {
     font-size: 24px;
     padding-bottom: 10px;
+    opacity: 0.8;
 }
 
 #overall-sent-content{
-    font-size: 18px;
+    font-size: 16px;
 }
 
 
@@ -178,7 +171,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+    /* transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s; */
 }
 
 .visible {
@@ -204,8 +197,8 @@ body {
 }
 
 .flex-item.expanded {
-    width: 600px;
-    height: 500px;
+    width: 500px;
+    height: 430px;
 }
 
 .container {
@@ -245,6 +238,10 @@ body {
     display: none;
 }
 
+.metric-container.hidden{
+    display: none;
+}
+
 
 .expanded .img-progress-flex .results-txt{
     width: 90%;
@@ -262,8 +259,135 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 18px;
+    opacity: 0.8;
 }
 
 .summary-intro {
     font-size: 14px;
+}
+
+
+.metric-container {
+    text-align: center;
+    width: 80%;
+    margin:auto;
+    
+}
+
+.metric-container-metrics {
+    width: 320px;
+    margin: auto;
+}
+
+.metric-label {
+    font-size: 1rem;
+    opacity: 0.8;
+    width: 100px;
+    margin: auto;
+    text-align: left;
+}
+
+.progress-bar-metric {
+    width: 150px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+}
+
+.progress-fill-metric {
+    height: 100%;
+    width: 0%; 
+    background: linear-gradient(to right, #ff4d4d, #ffcc00, #4dff88);
+    transition: width 0.6s ease-in-out;
+}
+
+.metric-value {
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+
+
+.metric-container-metrics > div {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    justify-content: space-between;
+
+}
+
+
+
+
+/* Floating container for explanations */
+.floating-container {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    max-width: 300px;
+    height: auto;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+    z-index: 1000; /* Make sure it appears above everything */
+    pointer-events: none; /* Prevent interfering with hover */
+}
+
+
+.feedback-container {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    text-align: left;
+    padding-top: 10px;
+}
+
+#feedback-text {
+    display: block;
+}
+
+#feedback-text-title {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+#feedback-text-question {
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.rating-options {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.rating-option {
+    font-size: 10px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.rating-option:hover {
+    background-color: #1b5d9e;
+    color: white;
+}
+
+.thank-you-message {
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    top: 40px;
+    opacity: 0.4;
+}
+
+#feedback-cont-add-padding{
+    padding-top: 33px;
 }
